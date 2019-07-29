@@ -127,7 +127,7 @@ def handle_photo():
 	dateList = []
 
 	listfile="all.csv"
-	allurls=getUrl(listfile)
+	allurls=getUrl(listfile)#腾讯云点播的各个视频地址
 
 	for i in range(len(file_list)):
 		print  file_list
@@ -162,7 +162,8 @@ def handle_photo():
 		basename = fn[0]#文件名
 		postfix = fn[-1]#后缀名
 
-		new_dict = {"gif": "gif/"+filename, "mp4": allurls[basename] ,"width":str(w),"height":str(h),"time":date.strftime('%Y年%m月%d日 %H点%M分 ')+filename} 
+		#new_dict = {"gif": "gif/"+filename, "mp4": allurls[basename] ,"width":str(w),"height":str(h),"time":date.strftime('%Y年%m月%d日 %H点%M分 ')+filename} 
+		new_dict = {"gif": "https://tian-1252064124.cos.ap-chengdu.myqcloud.com/"+filename, "mp4": allurls[basename] ,"width":str(w),"height":str(h),"time":date.strftime('%Y年%m月%d日 %H点%M分 ')+filename} #使用腾讯COS加快所有gif图片的加载速度，比github快
 		list_info.append(new_dict)
 		i+=1	
 
